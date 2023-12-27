@@ -1,0 +1,65 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <div class="navlinks-container">
+        <ul class="cui breadcrumb">
+            <li><a href="/home">Home</a></li>
+    
+            {% if product['Gender'] == 'Woman' %}
+                <li><a href="/woman">{{ product['Gender'] }}</a></li>
+            {% elif product['Gender'] == 'Man' %}
+                <li><a href="/man">{{ product['Gender'] }}</a></li>
+            {% elif product['Gender'] == 'Children' %}
+                <li><a href="/children">{{ product['Gender'] }}</a></li>
+            {% endif %}
+    
+            {% if product['Brand'] == 'Star Butik' %}
+                <li><a href="/starbutik">{{ product['Brand'] }}</a></li>
+            {% elif product['Brand'] == 'Man Club' %}
+                <li><a href="/manclub">{{ product['Brand'] }}</a></li>
+            {% elif product['Brand'] == 'Little Things' %}
+                <li><a href="/littlethings">{{ product['Brand'] }}</a></li>
+            {% endif %}
+
+            <li><a>{{ product['description'] }}</a></li>
+        </ul>
+        <span class="bg-overlay" aria-hidden="true"></span>
+    </div>
+   
+    <div class="product-details">
+        <div class="image-slider">
+            <img src="{{ url_for('static', filename=product['image_path']) }}">
+            <div class="product-images">
+                
+        </div>
+    </div>    
+    
+    <div class="details">
+        
+            <h2 class="product-brand">{{ product['Brand'] }}</h2>
+            <p class="product-short-des">{{ product['description'] }}</p>
+            <span class="product-price" style="color: #ff0000;">{{product['price']}} ₺</span>
+
+            <p class="product-sub-heading">Select Size</p>
+        
+            <input type="radio" name="size" value="s" checked hidden id="s-size">
+            <label for="s-size" class="size-radio-btn check">s</label>
+            <input type="radio" name="size" value="m" hidden id="m-size">
+            <label for="m-size" class="size-radio-btn">m</label>
+            <input type="radio" name="size" value="l" hidden id="l-size">
+            <label for="l-size" class="size-radio-btn">l</label>
+            <input type="radio" name="size" value="xl" hidden id="xl-size">
+            <label for="xl-size" class="size-radio-btn">xl</label>
+            <input type="radio" name="size" value="xxl" hidden id="xxl-size">
+            <label for="xxl-size" class="size-radio-btn">xxl</label>  
+        </div>
+    </div>
+
+    <section class="detail-des">
+        <h2 class="heading">description</h2>
+        <p class="des">{{ product['description'] }}</p>
+    </section>
+
+{% endblock %}

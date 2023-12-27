@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}Home{% endblock title %}
+
+{% block content %}
+
+
+<div class="container mt-4">
+  
+    <h2>Search Results</h2>
+  
+  <div class="row">
+    {% if results %}
+        {% for result in results %}
+        <div class="col-md-3 mb-4">
+        <div class="card">
+            <img src="{{ url_for('static', filename=result[6]) }}" class="card-img-top" alt="Product Image" style="height: 500px; object-fit: cover;">
+            <div class="card-body">
+            <h5 class="card-title">{{ result[2] }}</h5>
+            <p class="card-text">{{ result[4] }}</p>
+            <p class="card-text" style="color: #ff0000;">{{ result[5] }} ₺ </p>
+            <a href="{{ url_for('detail', id=result[0]) }}" class="btn btn-primary">Details</a>
+            </div>
+        </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+</div>
+
+{% endblock %}
+
